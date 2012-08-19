@@ -1,24 +1,10 @@
-/*TILES*/
-tiles = function(){ /*Insert your own tiles here*/
-	/* Home */
+tiles = function(){
 	tileTitleText(0,0,0,2,1,'blue','A new page to test','Welcome','<span style="font-size:14px;">This is your test version of the Metro UI template! Adapt it to your own needs. Be creative!<span>');
 	tileTitleTextImage(0,1,1,2,2,'red','external:http://metro-webdesign.info/#!Donate','Terms of use',
 	"This template is free for personal use (although a donation is very welcome). If you use this for a commercial website, please consider donating if you're happy with the result. I worked hundredss of hours on this to make this bug-free, cross-browser compatible, writing tutorials, giving support when having problems... <br/><br/><em>This template is as is and I give no warranty.</em>",'img/exclamation.png',0.4*scale,15,0);
 	tileImageSlider(0,2,0,1,1,'#FF6600','&Another group','img/whiteArrow.png',0.5*scale,'Go to last tilegroup',0.7);
 	tileLive(0,0,1,1,2,'#669900','external:http://www.w3schools.com/tags/ref_colorpicker.asp','Colors','','','','',3000,
 	'I know the colors of this test version are ugly','But be creative and make it yours!',"Click here to go to a nice colorpicker at w3schools","","");
-	
-	/*GROUP2: Some tilse */
-	tileSlideshow(1,0,0,2,2,'','','Slideshow',4000,'img/bg/img1.png','img/bg/img2.jpg','img/bg/img3.jpg','','',"noClick"); // we add a noClick class to let the user know there's no link
-	tileTitleText(1,2,0,1,1,'#336699','external:http://metro-webdesign.info','<--','For more effects, check the tutorial at http://metro-webdesign.info');
-	tileTitleText(1,2,1,1,1,'red','Testing slides','Click me','...to go to a page with content');
-	tileTitleText(1,0,2,2,1,'url("img/bg/green.png")','','Background image','You can also use a background image, but be careful as it uses much bandwidth and it can make the animations sloppy!' , "noClick");
-	tileTitleText(1,2,2,2,1,'','external:http://www.colorzilla.com/gradient-editor/','CSS3 Gradients',"It's better to use gradients in CSS3 than background-images, see this example how. Click on this tile for a CSS3 gradients-generator","blueGradient");
-	
-	/*GROUP 3: Another group */
-	tileImageAdvanced(2,0,1,1,2,'green','','img/exclamation.png',0.9,1.2, "noClick");
-	tileTitleText(2,1,0,1,1,'green','Other content to test','Another page','With content');
-	tileCustom(2,0,0,1,1,"#F90",'&home',"<img src='img/whiteArrow.png' height='64' width='64' style='margin-left:32px;margin-top:16px;'/><div id='title' style='margin-left:15px;margin-top:10px;font-size:13px;'>Go back to group 1</div>",'turnedArrow');
 }
 
 /*Tile Templates */
