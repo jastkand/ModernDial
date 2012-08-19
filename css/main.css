@@ -175,3 +175,27 @@ select {
 	box-sizing: content-box;
 	margin: -4px 0;
 }
+
+.orangeItem {
+	background: #ff7b0d;
+}
+
+.redItem {
+	background: #cf0404;
+}
+
+.greenItem {
+	background: #789600;
+}
+
+.blueItem {
+	background: #164c89;
+}
+
+.darkBlueItem {
+	background: #4a4a99;
+}
+
+.lightBlueItem {
+	background: #067fdb;
+}

@@ -120,7 +120,8 @@ background: linear-gradient(135deg,  #789600 1%,#9cb75b 100%); /* W3C */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#789600', endColorstr='#9cb75b',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 
 }
-.redTile{background: #cf0404; /* Old browsers */
+.redTile{
+background: #cf0404; /* Old browsers */
 background: -moz-linear-gradient(-45deg,  #cf0404 0%, #ff8075 99%); /* FF3.6+ */
 background: -webkit-linear-gradient(-45deg,  #cf0404 0%,#ff8075 99%); /* Chrome10+,Safari5.1+ */
 background: -o-linear-gradient(-45deg,  #cf0404 0%,#ff8075 99%); /* Opera 11.10+ */
