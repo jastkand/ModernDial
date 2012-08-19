@@ -51,7 +51,39 @@
         });
       });
     });
-  }
+  };
+
+  initiateFolder = function(){
+    isFolderExists = false;
+
+    chrome.bookmarks.getTree(function(bookmarks){
+      printBookmarks(bookmarks);
+    });
+
+    function printBookmarks(bookmarks) {
+      bookmarks.forEach(function(bookmark) {
+        console.debug(bookmark.id + ' - ' + bookmark.title + ' - ' + bookmark.url);
+        console.debug(bookmark.title === "ModernDial Bookmarks");
+        if (bookmark.title === "ModernDial Bookmarks") {
+          // Strange bug, it doesn't save variables
+          isFolderExists = true;
+          bookmarksFolderId = bookmark.id;
+        };
+        if (bookmark.children) printBookmarks(bookmark.children);
+      });
+    };
+
+    if (!isFolderExists) {
+      chrome.bookmarks.create({
+        'parentId': '1',
+        'title': 'ModernDial Bookmarks'
+      }, function(bookmarkFolder) {
+        bookmarksFolderId = bookmarkFolder.id;
+        console.debug(bookmarkFolder.id);
+        console.debug(bookmarkFolder.title);
+      });
+    };
+  };
 
   showForm = function(){
     $("html").css("overflow-x","auto");
@@ -68,28 +100,9 @@
           $('#navSave').click(function(e) {
             showHome();
             
-            var isFolderExists = false;
-            chrome.bookmarks.getTree(function(bookmarks){
-              printBookmarks(bookmarks);
-            });
-            function printBookmarks(bookmarks) {
-              bookmarks.forEach(function(bookmark) {
-                if (bookmark.title == "ModernDial") {
-                  isFolderExists = true;
-                  return;
-                };
-                if (bookmark.children) printBookmarks(bookmark.children);
-              });
-            }
+            bookmarksFolderId = initiateFolder();
 
-            if (!isFolderExists) {
-              chrome.bookmarks.create({
-                'parentId': '1',
-                'title': 'ModernDial Bookmarks'
-              }, function(newFolder) {
-                console.log("added folder: " + newFolder.title);
-              });
-            }
+console.log(bookmarksFolderId);
 
             e.preventDefault();
           });
@@ -104,7 +117,7 @@
     $(window).resize(); // check the scrollbars now
     $(document).unbind("keydown").unbind("keyup"); // let the keyboard work normal
     $("#catchScroll").unbind("mousedown"); // we may scroll with the mouse here
-  }
+  };
 
   $(function() {
     showHome();
