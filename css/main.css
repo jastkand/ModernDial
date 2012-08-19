@@ -119,7 +119,7 @@ button:hover{
 	display:none;
 	position:relative;
 	top: 28px;
-	float:right;
+	float:left;
 	z-index:1;
 }
 #navStripe{
@@ -128,7 +128,7 @@ button:hover{
 	margin-top:5px;
 }
 .navItem{ /* Navigation link */
-	padding:3px 8px;
+	padding: 5px 10px;
 	margin: 0px 5px 0 0;
 	top: 100px;
 	color:#FFF;
@@ -141,7 +141,7 @@ button:hover{
 .navItem:hover{
 	color:#FFF;
 	border:1px solid #FFF;
-	padding: 2px 7px;
+	padding: 4px 9px;
 	-moz-box-shadow: 0 0 7px #fff;
 	-webkit-box-shadow: 0 0 7px #fff;
 	box-shadow: 0 0 7px #fff;
@@ -149,4 +149,29 @@ button:hover{
 .navItemActive{
 	border:1px solid #FFF;
 	padding: 2px 7px;
+}
+
+.formWrapper {
+	width: 350px;
+}
+
+input, textarea, select {
+	padding: 3px;
+	width: 100%;
+	background: #FFE;
+	font-family: 'lucida grande','Lucida Sans Unicode', tahoma, sans-serif;
+	color: #333;
+	font-size: 20px;
+	margin: 0 0 10px;
+	border: 1px solid #AAA;
+}
+
+textarea {
+	height: 100px;
+	resize: vertical;
+}
+
+select {
+	box-sizing: content-box;
+	margin: -4px 0;
 }
