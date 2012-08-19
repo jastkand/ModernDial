@@ -4,7 +4,11 @@
   "manifest_version": 2,
   "description": "This extension adds Modern UI dial page into the browser",
   "browser_action": {
-    "default_icon": "images/icon19.png"
+    "default_icon": "images/icon19.png",
+    "default_popup": "popup.html"
+  },
+  "chrome_url_overrides" : {
+    "newtab": "main.html"
   },
   "permissions": []
 }
