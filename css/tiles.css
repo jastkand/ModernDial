@@ -27,13 +27,13 @@
 }
 
 /* tileTitleText */
-#title{
+.title{
 	margin:3px 3px 0 10px;
 	padding: 0px;
 	font-size: 30px;
 	font-weight:500;
 }
-#desc{
+.desc{
 	margin: 0 12px 0 12px;
 	padding: 0;
 	font-size: 13px;

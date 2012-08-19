@@ -10,9 +10,9 @@
         <div class="title"></div>   \
         <div class="desc">Add item</div>\
       </a>\
-      <a href="#" class="tile group0 blueTile" style="margin-top: 145px; width: 280px; height: 135px; display: inline; ">\
-        <div class="title"></div>  \
-        <div class="desc">Add item</div> \
+      <a href="http://plus.google.com" class="tile group0 blueTile" style="margin-top: 145px; width: 280px; height: 135px; display: inline; ">\
+        <div class="title">Google+</div>  \
+        <div class="desc">Lorem ipsum dolar sit</div> \
       </a>\
       <a href="#" class="tile group0 redTile" style="margin-top: 290px; width: 280px; height: 135px; display: inline; ">\
         <div class="title" style="margin-left:60px;"></div>   \
