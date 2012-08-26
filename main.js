@@ -5,43 +5,6 @@
     $content = $("#content");
     $content.css('margin-left',0).css("margin-top",30).width($("#wrapper").width()).html("<img src='images/loader.gif' height='24' width='24'/>").fadeIn(1000);
     
-    // Temporary it will be done this way. Ahhhhh....
-    var newContent = '<a href="#" data-empty="true" class="tile group0 greenTile" style="margin-top: 0px; margin-left: 0px; width: 280px; height: 135px; display: inline; "> \
-        <div class="title"></div>   \
-        <div class="desc">Add item</div>\
-      </a>\
-      <a href="http://plus.google.com" class="tile group0 blueTile" style="margin-top: 145px; width: 280px; height: 135px; display: inline; ">\
-        <div class="title">Google+</div>  \
-        <div class="desc">Lorem ipsum dolar sit</div> \
-      </a>\
-      <a href="#" class="tile group0 redTile" style="margin-top: 290px; width: 280px; height: 135px; display: inline; ">\
-        <div class="title" style="margin-left:60px;"></div>   \
-        <div class="desc">Add item</div>\
-      </a>\
-      <a href="#" class="tile group0 orangeTile" style="margin-top: 0px; margin-left: 290px; width: 135px; height: 135px; display: inline; "> \
-        <div class="title"></div>   \
-        <div class="desc">Add item</div>\
-      </a>\
-      <a href="#" class="tile group0 darkBlueTile" style="margin-top: 145px; margin-left: 290px; width: 135px; height: 135px; display: inline; ">    \
-        <div class="title"></div>   \
-        <div class="desc">Add item</div>   \
-      </a>\
-      <a href="#" class="tile group0 lightBlueTile" style="margin-top: 290px; margin-left: 290px; width: 290px; height: 135px; display: inline; "> \
-        <div class="title"></div>\
-        <div class="desc">Add item</div>   \
-      </a>\
-      <a href="#" class="tile group0 lightBlueTile" style="margin-top: 0px; margin-left: 1690px; width: 135px; height: 135px; display: inline; ">\
-        <div class="title"></div>   \
-        <div class="desc">Add item</div>\
-      </a>\
-      <a href="#" class="tile group0 orangeTile" style="margin-top: 0px; margin-left: 435px; width: 290px; height: 280px; display: inline; "> \
-        <div class="title"></div>   \
-        <div class="desc">Add item</div>\
-      </a>\
-      <a href="#" class="tile group0 darkBlueTile" style="margin-top: 290px; margin-left: 590px; width: 135px; height: 135px; display: inline; ">    \
-        <div class="title"></div>   \
-        <div class="desc">Add item</div>   \
-      </a>';
     $content.stop().fadeOut(500,function(){
       //$content.html(newContent);
       $content = tiles($content)
