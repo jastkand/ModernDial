@@ -1,23 +1,34 @@
-tiles = function(){
-	tileTitleText(0,0,0,2,1,'blue','A new page to test','Welcome','<span style="font-size:14px;">This is your test version of the Metro UI template! Adapt it to your own needs. Be creative!<span>');
-	tileTitleTextImage(0,1,1,2,2,'red','external:http://metro-webdesign.info/#!Donate','Terms of use',
-	"This template is free for personal use (although a donation is very welcome). If you use this for a commercial website, please consider donating if you're happy with the result. I worked hundredss of hours on this to make this bug-free, cross-browser compatible, writing tutorials, giving support when having problems... <br/><br/><em>This template is as is and I give no warranty.</em>",'img/exclamation.png',0.4*scale,15,0);
-	tileImageSlider(0,2,0,1,1,'#FF6600','&Another group','img/whiteArrow.png',0.5*scale,'Go to last tilegroup',0.7);
-	tileLive(0,0,1,1,2,'#669900','external:http://www.w3schools.com/tags/ref_colorpicker.asp','Colors','','','','',3000,
-	'I know the colors of this test version are ugly','But be creative and make it yours!',"Click here to go to a nice colorpicker at w3schools","","");
+var tiles = function(content){
+  content.html('')
+    .append(tileTitleText(0,0,2,1,'blueTile','http://vk.com','VK','Social network'))
+    .append(tileTitleText(0,1,2,1,'redTile','https://plus.google.com','Google+','G+ Social network'))
+    .append(tileTitleText(0,2,1,1,'greenTile','http://github.com','Github',''))
+    .append(tileTitleText(1,2,1,1,'orangeTile','#','Add','').attr('data-empty', true));
+  return content;
 }
 
 /*Tile Templates */
-tileTitleText = function(group,x,y,width,height,bg,linkPage,title,text,optClass){ /* Tile with only a title and description */
-	tileContent += (
-	"<a "+makeLink(linkPage)+" class='tile group"+group+" "+optClass+"' style=' \
-	margin-top:"+y*scaleSpace+"px; margin-left:"+(x*scaleSpace+group*tileGroupSpace)+"px; \
-	width: "+(width*scaleSpace-tileSpace)+"px; height:"+(height*scaleSpace-tileSpace)+"px; \
-	background:"+bg+";'>\
-	<div id='title'>"+title+"</div>\
-	<div id='desc'>"+text+"</div>\
-	</a>");
+
+/* Tile with only a title and description */
+var tileTitleText = function(x,y,width,height,optClass,linkPage,title,text){
+  var tileContent = $("<a />");
+  tileContent.attr("href", linkPage).addClass("tile");
+  if (!!optClass) {
+    tileContent.addClass(optClass);
+  }
+  tileContent.css({
+    'marginTop': y * (scale + tileSpace) + "px",
+    'marginLeft': x * (scale + tileSpace) + "px",
+    'width': ((scale + tileSpace) * width - tileSpace) + "px",
+    'height': ((scale + tileSpace) * height - tileSpace) + "px",
+    'display': 'inline'
+	});
+  tileContent
+    .append("<div class='title'>" + title + "</div>")
+    .append("<div class='desc'>" + text + "</div>");
+  return tileContent;
 }
+
 tileImage = function(group,x,y,bg,linkPage,img,imgSize,optClass){ /* Tile with only an image */
 	tileContent += (
 	"<a "+makeLink(linkPage)+" class='tile group"+group+" "+optClass+"' style=' \

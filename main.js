@@ -43,7 +43,8 @@
         <div class="desc">Add item</div>   \
       </a>';
     $content.stop().fadeOut(500,function(){
-      $content.html(newContent);
+      //$content.html(newContent);
+      $content = tiles($content)
       $content.show(100, function(){
         $('.tile[data-empty="true"]').click(function(e){
           showForm();
