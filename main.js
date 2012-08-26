@@ -6,8 +6,7 @@
     $content.css('margin-left',0).css("margin-top",30).width($("#wrapper").width()).html("<img src='images/loader.gif' height='24' width='24'/>").fadeIn(1000);
     
     $content.stop().fadeOut(500,function(){
-      //$content.html(newContent);
-      $content = tiles($content)
+      $content = tiles($content);
       $content.show(100, function(){
         $('.tile[data-empty="true"]').click(function(e){
           showForm();
@@ -57,12 +56,8 @@
         $content.html(newContent);
         $content.show(100, function(){
           $('#navSave').click(function(e) {
+            // here should be save bookmark method call
             showHome();
-            
-            initiateFolder();
-
-console.log(bookmarksFolderId);
-
             e.preventDefault();
           });
           $('#navCancel').click(function(e) {
@@ -79,6 +74,7 @@ console.log(bookmarksFolderId);
   };
 
   $(function() {
+    initiateFolder();
     showHome();
   });
 })(jQuery);

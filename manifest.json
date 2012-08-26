@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "manifest_version": 2,
   "description": "This extension adds Modern UI dial page into the browser",
+  "icons": { 
+    "16": "images/icon_16.png",
+    "48": "images/icon_48.png",
+    "128": "images/icon_128.png"
+  },
   // "browser_action": {
   //   "default_icon": "images/icon19.png"
   //   //,"default_popup": "popup.html"
