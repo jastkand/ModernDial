@@ -54,33 +54,28 @@
   };
 
   initiateFolder = function(){
-    isFolderExists = false;
+    if (!!bookmarksFolderId) {
+      chrome.bookmarks.getTree(function(bookmarks){
+        listBookmarks(bookmarks);
+      });
+    }
 
-    chrome.bookmarks.getTree(function(bookmarks){
-      printBookmarks(bookmarks);
-    });
-
-    function printBookmarks(bookmarks) {
+    function listBookmarks(bookmarks) {
       bookmarks.forEach(function(bookmark) {
-        console.debug(bookmark.id + ' - ' + bookmark.title + ' - ' + bookmark.url);
-        console.debug(bookmark.title === "ModernDial Bookmarks");
         if (bookmark.title === "ModernDial Bookmarks") {
-          // Strange bug, it doesn't save variables
-          isFolderExists = true;
           bookmarksFolderId = bookmark.id;
         };
-        if (bookmark.children) printBookmarks(bookmark.children);
+        if (bookmark.children) listBookmarks(bookmark.children);
       });
     };
 
-    if (!isFolderExists) {
+    if (!!bookmarksFolderId) {
       chrome.bookmarks.create({
         'parentId': '1',
         'title': 'ModernDial Bookmarks'
       }, function(bookmarkFolder) {
         bookmarksFolderId = bookmarkFolder.id;
-        console.debug(bookmarkFolder.id);
-        console.debug(bookmarkFolder.title);
+        return bookmarksFolderId;
       });
     };
   };
@@ -100,7 +95,7 @@
           $('#navSave').click(function(e) {
             showHome();
             
-            bookmarksFolderId = initiateFolder();
+            initiateFolder();
 
 console.log(bookmarksFolderId);
 
