@@ -1,9 +1,21 @@
 var tiles = function(content){
+  if (bookmarksFolderId == null) {
+    initiateFolder();
+  }
+
   content.html('')
     .append(tileTitleText(0,0,2,1,'blueTile','http://vk.com','VK','Social network'))
     .append(tileTitleText(0,1,2,1,'redTile','https://plus.google.com','Google+','G+ Social network'))
     .append(tileTitleText(0,2,1,1,'greenTile','http://github.com','Github',''))
     .append(tileTitleText(1,2,1,1,'orangeTile','#','Add','').attr('data-empty', true));
+
+  chrome.bookmarks.getChildren(bookmarksFolderId, function(bookmarks){
+    bookmarks.forEach(function(bookmark) {
+      data = JSON.parse(bookmark.title);
+      content.append(tileTitleText(2, 0, data.w, data.h, 'greenTile', bookmark.url, data.t, data.d));
+    });
+  }); 
+
   return content;
 }
 

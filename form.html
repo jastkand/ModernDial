@@ -1,13 +1,34 @@
 <h1 style="margin-top:0;">Add dial</h1>
-<div class="formWrapper" style="margin-top:20px;">
-  <input type="text" id="site_url" name="Site url" value="" placeholder="Enter site url">
-  <textarea id="site_description" name="Site description" placeholder="Enter site description"></textarea>
-  <select>
-    <option value="0" class="orangeItem">Orange</option>
-    <option value="1" class="blueItem">Blue</option>
-    <option value="2" class="greenItem">Green</option>
-    <option value="3" class="redItem">Red</option>
-  </select>
+<div class="formWrapper">
+  <div class="column">
+    <label>Site url:</label>
+    <input type="text" id="site_url" name="Site url" value="" placeholder="Site url"/>
+    <label>Site title:</label>
+    <input type="text" id="site_title" name="Site title" placeholder="Site title"/>
+    <label>Site description:</label>
+    <textarea id="site_description" name="Site description" placeholder="Site description"></textarea>
+  </div>
+  <div class="column">
+    <label>Color:</label>
+    <select id="tile_color">
+      <option value="0" class="orangeItem">Orange</option>
+      <option value="1" class="blueItem">Blue</option>
+      <option value="2" class="greenItem">Green</option>
+      <option value="3" class="redItem">Red</option>
+    </select>
+    <label>Width:</label>
+    <select id="tile_width">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+    </select>
+    <label>Height:</label>
+    <select id="tile_height">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+    </select>
+  </div>
 </div>
 <div id="nav" style="display: block; ">
   <a href="#" style="background-color:#789600;" class="navItem" id="navSave">Save</a>

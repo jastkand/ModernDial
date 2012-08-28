@@ -1,3 +1,10 @@
 body {
-  background: #2C0E2C;
+  background: #096440;
+}
+
+.column {
+  display: inline-block;
+  margin-right: 100px;
+  vertical-align: top;
+  width: 350px;
 }

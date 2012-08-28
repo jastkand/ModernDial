@@ -152,18 +152,18 @@ button:hover{
 }
 
 .formWrapper {
-	width: 350px;
+  margin-top:20px;
 }
 
 input, textarea, select {
-	padding: 3px;
-	width: 100%;
-	background: #FFE;
-	font-family: 'lucida grande','Lucida Sans Unicode', tahoma, sans-serif;
-	color: #333;
-	font-size: 20px;
-	margin: 0 0 10px;
-	border: 1px solid #AAA;
+  padding: 3px;
+  width: 100%;
+  background: #FFE;
+  font-family: 'lucida grande','Lucida Sans Unicode', tahoma, sans-serif;
+  color: #333;
+  font-size: 20px;
+  margin: 0;
+  border: 1px solid #AAA;
 }
 
 textarea {
@@ -173,7 +173,13 @@ textarea {
 
 select {
 	box-sizing: content-box;
-	margin: -4px 0;
+	margin: 0;
+}
+
+label {
+	display: block;
+	font-size: 20px;
+	margin: 10px 0 5px;
 }
 
 .orangeItem {
