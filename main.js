@@ -7,7 +7,18 @@
     
     $content.stop().fadeOut(500,function(){
       $content = tiles($content);
-      $content.show(100, function(){});
+      $content.show(100, function(){
+        $('.tile').draggable({
+          opacity: 0.7, 
+          grid: [scale + tileSpace, scale + tileSpace],
+          start: function(event, ui) {
+            $(this).addClass('noclick');
+          },
+          stop: function(event, ui) {
+            setTimeout(function(){$(this).removeClass('noclick');}, 500);
+          }
+        });
+      });
     });
   };
 
@@ -100,19 +111,9 @@
       e.preventDefault();
     });
 
-    $('#customize').click(function(e){
-      $('.tile').draggable({
-        opacity: 0.7, 
-        grid: [scale + tileSpace, scale + tileSpace],
-        start: function(event, ui) {
-          $(this).addClass('noclick');
-        },
-        stop: function(event, ui) {
-          setTimeout(function(){$(this).removeClass('noclick');}, 500);
-        }
-      });
-      e.preventDefault();
-    });
+    // $('#customize').click(function(e){
+    //   e.preventDefault();
+    // });
 
   });
 })(jQuery);
