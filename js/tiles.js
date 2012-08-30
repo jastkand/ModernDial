@@ -36,7 +36,8 @@ var tileTitleText = function(x,y,width,height,optClass,linkPage,title,text){
 	});
   tileContent
     .append("<div class='title'>" + title + "</div>")
-    .append("<div class='desc'>" + text + "</div>");
+    .append("<div class='desc'>" + text + "</div>")
+    .append("<button class='tileEdit'>E</button>");
   return tileContent;
 }
 
