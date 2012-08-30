@@ -9,8 +9,13 @@
       $content = tiles($content);
       $content.show(100, function(){
         $('.tile[data-empty="true"]').click(function(e){
-          showForm();
-          e.preventDefault(); 
+          if ($(this).hasClass('noclick')) {
+            e.preventDefault();  
+          }
+          else {
+            showForm();
+            e.preventDefault();
+          }
         });
       });
     });
@@ -99,5 +104,20 @@
   $(function() {
     initiateFolder();
     showHome();
+
+    $('#customize').click(function(e){
+      $('.tile').draggable({
+        opacity: 0.7, 
+        grid: [scale + tileSpace, scale + tileSpace],
+        start: function(event, ui) {
+          $(this).addClass('noclick');
+        },
+        stop: function(event, ui) {
+          setTimeout(function(){$(this).removeClass('noclick');}, 500);
+        }
+      });
+      e.preventDefault();
+    });
+
   });
 })(jQuery);

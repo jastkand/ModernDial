@@ -21,32 +21,40 @@ p {
 	margin-left:20px;
 }
 
-h1{
+h1 {
 	font-size:36px;
 	font-weight:normal;
 	margin:25px 0 2px 0;
 }
-h2{
+h2 {
 	font-size:26px;
 	font-weight:normal;
 	margin:20px 0 2px 0;
 }
-h3{
+h3 {
 	font-size:20px;
 	font-weight:bold;
 	margin:20px 0 2px 0;
 }
 
-/* FORMS */
-button{
-	 border:1px solid #FFF;
-	 background-color:#555;
-	 color: #FFF;
-}
-button:hover{
-	background-color:#777;
+button {
+  margin: 10px;
+  background: none;
+  font-size: 16px;
+  color: #fff;
+  border: 0;
+  cursor: pointer;
 }
 
+button:hover {
+  color: #eee;
+}
+
+#customize {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
 /*LAYOUT PARTS*/
 #wrapper{
 	max-width: 1000px;
