@@ -7,17 +7,7 @@
     
     $content.stop().fadeOut(500,function(){
       $content = tiles($content);
-      $content.show(100, function(){
-        $('.tile[data-empty="true"]').click(function(e){
-          if ($(this).hasClass('noclick')) {
-            e.preventDefault();  
-          }
-          else {
-            showForm();
-            e.preventDefault();
-          }
-        });
-      });
+      $content.show(100, function(){});
     });
   };
 
@@ -104,6 +94,11 @@
   $(function() {
     initiateFolder();
     showHome();
+
+    $('#addTile').click(function(e){
+      showForm();
+      e.preventDefault();
+    });
 
     $('#customize').click(function(e){
       $('.tile').draggable({

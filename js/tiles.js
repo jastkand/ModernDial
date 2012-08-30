@@ -6,8 +6,7 @@ var tiles = function(content){
   content.html('')
     .append(tileTitleText(0,0,2,1,'blueTile','http://vk.com','VK','Social network'))
     .append(tileTitleText(0,1,2,1,'redTile','https://plus.google.com','Google+','G+ Social network'))
-    .append(tileTitleText(0,2,1,1,'greenTile','http://github.com','Github',''))
-    .append(tileTitleText(1,2,1,1,'orangeTile','#','Add','').attr('data-empty', true));
+    .append(tileTitleText(0,2,1,1,'greenTile','http://github.com','Github',''));
 
   chrome.bookmarks.getChildren(bookmarksFolderId, function(bookmarks){
     bookmarks.forEach(function(bookmark) {

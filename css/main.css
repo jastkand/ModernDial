@@ -38,7 +38,7 @@ h3 {
 }
 
 button {
-  margin: 10px;
+  margin: 10px 10px 10px 0;
   background: none;
   font-size: 16px;
   color: #fff;
@@ -50,7 +50,7 @@ button:hover {
   color: #eee;
 }
 
-#customize {
+#methods {
   position: absolute;
   top: 0;
   right: 0;
