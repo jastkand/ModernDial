@@ -11,15 +11,15 @@ var tiles = function(content){
   chrome.bookmarks.getChildren(bookmarksFolderId, function(bookmarks){
     $.each(bookmarks, function(key, bookmark){
       var data = JSON.parse(bookmark.title);
-      var color = function(){
-        switch(){
-          case 0: return 'orangeTile'; break;
-          case 1: return 'blueTile'; break;
-          case 2: return 'greenTile'; break;
-          case 3: return 'redTile'; break;
+      var color = function(color){
+        switch(color){
+          case '0': return 'orangeTile'; break;
+          case '1': return 'blueTile'; break;
+          case '2': return 'greenTile'; break;
+          case '3': return 'redTile'; break;
         }
       }
-      content.append(tileTitleText(key + 1, key, data.w, data.h, color(), bookmark.url, data.t, data.d));
+      content.append(tileTitleText(key + 1, key, data.w, data.h, color(data.c), bookmark.url, data.t, data.d));
     });
   }); 
 
