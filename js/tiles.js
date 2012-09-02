@@ -9,9 +9,17 @@ var tiles = function(content){
     .append(tileTitleText(0,2,1,1,'greenTile','http://github.com','Github',''));
 
   chrome.bookmarks.getChildren(bookmarksFolderId, function(bookmarks){
-    bookmarks.forEach(function(bookmark) {
-      data = JSON.parse(bookmark.title);
-      content.append(tileTitleText(2, 0, data.w, data.h, 'greenTile', bookmark.url, data.t, data.d));
+    $.each(bookmarks, function(key, bookmark){
+      var data = JSON.parse(bookmark.title);
+      var color = function(){
+        switch(){
+          case 0: return 'orangeTile'; break;
+          case 1: return 'blueTile'; break;
+          case 2: return 'greenTile'; break;
+          case 3: return 'redTile'; break;
+        }
+      }
+      content.append(tileTitleText(key + 1, key, data.w, data.h, color(), bookmark.url, data.t, data.d));
     });
   }); 
 

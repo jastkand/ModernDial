@@ -67,8 +67,8 @@
             // url is auto validating, should perform function checking is bookmark created
             var bookmarkTitle = function(){
               var title = {
-                "t": $('#site_title').val(), //.replace(/\|/g, "-"),
-                "d": $('#site_description').val(), //.replace(/\|/g, "-"),
+                "t": $('#site_title').val(),
+                "d": $('#site_description').val(),
                 "w": $('select#tile_width option:selected').val(),
                 "h": $('select#tile_height option:selected').val(),
                 "c": $('select#tile_color option:selected').val()
