@@ -29,6 +29,8 @@ var tileTitleText = function(id,x,y,width,height,color,linkPage,title,text){
       case '1': return 'blueTile'; break;
       case '2': return 'greenTile'; break;
       case '3': return 'redTile'; break;
+      case '4': return 'darkBlueTile'; break;
+      case '5': return 'lightBlueTile'; break;
     }
   }
   var tileContent = $("<a />");
