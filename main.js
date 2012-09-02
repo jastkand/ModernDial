@@ -15,6 +15,9 @@
             $(this).addClass('noclick');
           },
           stop: function(event, ui) {
+            $(this).top();
+            $(this).left();
+
             setTimeout(function(){$(this).removeClass('noclick');}, 500);
           }
         });
@@ -25,7 +28,7 @@
 
             $('#site_url').val(element.attr("href"));
             $('#site_title').val(element.find('.title').html());
-            $('#site_description').val(element.find('.description').html());
+            $('#site_description').val(element.find('.desc').html());
             $('#tile_color').val(element.data("color"));
             $('#tile_width').val(element.data("width"));
             $('#tile_height').val(element.data("height"));
@@ -80,22 +83,6 @@
         $content.html(newContent);
         $content.show(100, function(){
           $('#navSave').click(function(e) {
-            // should validate data
-            // url is auto validating, should perform function checking is bookmark created
-            var bookmarkTitle = function(){
-              var title = {
-                "t": $('#site_title').val(),
-                "d": $('#site_description').val(),
-                "w": $('select#tile_width option:selected').val(),
-                "h": $('select#tile_height option:selected').val(),
-                "c": $('select#tile_color option:selected').val()
-              }
-              return JSON.stringify(title);
-            }
-            
-            var url = $('#site_url').val();
-                url = (url.indexOf('://') == -1) ? 'http://' + url : url;
-
             if (modifiedBookmarkId == null){
               // Create new bookmark
               if (bookmarksFolderId == null){
@@ -105,7 +92,7 @@
               chrome.bookmarks.create({
                 'parentId': bookmarksFolderId,
                 'title': bookmarkTitle(),
-                'url': url
+                'url': bookmarkUrl()
               }, function(e){
                 console.log(JSON.stringify(e));
               });  
@@ -113,7 +100,7 @@
             else {
               // Update existing bookmark
               chrome.bookmarks.update(modifiedBookmarkId, {
-                'url': url,
+                'url': bookmarkUrl(),
                 'title': bookmarkTitle()
               }, function(e){
                 modifiedBookmarkId = null;
