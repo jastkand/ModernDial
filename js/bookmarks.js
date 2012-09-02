@@ -11,7 +11,7 @@ var bookmarkTitle = function(title, description, width, height, color, top, left
   return JSON.stringify(title);
 }
 
-var bookmarkUrl = function(){
-  var url = $('#site_url').val();
-  return (url.indexOf('://') == -1) ? 'http://' + url : url;
+var bookmarkUrl = function(url){
+  var link = url;
+  return (link.indexOf('://') == -1) ? 'http://' + link : link;
 }

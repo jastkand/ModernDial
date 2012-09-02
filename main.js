@@ -15,9 +15,25 @@
             $(this).addClass('noclick');
           },
           stop: function(event, ui) {
-            $(this).data('id').toString();
-            $(this).top();
-            $(this).left();
+            modifiedBookmarkId = $(this).data('id').toString();
+            var self = this;
+            chrome.bookmarks.update(modifiedBookmarkId, {
+              'url': bookmarkUrl($(this).attr("href")),
+              'title': bookmarkTitle(
+                $(this).find('.title').html(),
+                $(this).find('.desc').html(),
+                $(this).data("width").toString(),
+                $(this).data("height").toString(),
+                $(this).data("color").toString(),
+                $(this).position().top,
+                $(this).position().left)
+            }, function(e){
+              modifiedBookmarkId = null;
+              $(self).attr({
+                "data-top": $(self).position().top,
+                "data-left": $(self).position().left
+              });
+            });
 
             setTimeout(function(){$(this).removeClass('noclick');}, 500);
           }
@@ -33,6 +49,8 @@
             $('#tile_color').val(element.data("color"));
             $('#tile_width').val(element.data("width"));
             $('#tile_height').val(element.data("height"));
+            $('#position_top').val(element.data("top"));
+            $('#position_left').val(element.data("left"));
           });
           e.preventDefault();
         });
@@ -99,7 +117,7 @@
                   $('select#tile_height option:selected').val(),
                   $('select#tile_color option:selected').val(),
                   0, 0),
-                'url': bookmarkUrl()
+                'url': bookmarkUrl($('#site_url').val())
               }, function(e){
                 console.log(JSON.stringify(e));
               });  
@@ -107,14 +125,15 @@
             else {
               // Update existing bookmark
               chrome.bookmarks.update(modifiedBookmarkId, {
-                'url': bookmarkUrl(),
+                'url': bookmarkUrl($('#site_url').val()),
                 'title': bookmarkTitle(
                   $('#site_title').val(),
                   $('#site_description').val(),
                   $('select#tile_width option:selected').val(),
                   $('select#tile_height option:selected').val(),
                   $('select#tile_color option:selected').val(),
-                  0, 0)
+                  $('#position_top').val(),
+                  $('#position_left').val())
               }, function(e){
                 modifiedBookmarkId = null;
               });

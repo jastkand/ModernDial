@@ -12,7 +12,7 @@ var tiles = function(content){
     var tilesMap = [[0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]];
     $.each(bookmarks, function(key, bookmark){
       var data = JSON.parse(bookmark.title);
-      content.append(tileTitleText(bookmark.id, key, key, data.w, data.h, data.c, bookmark.url, data.t, data.d));
+      content.append(tileTitleText(bookmark.id, data.left, data.top, data.w, data.h, data.c, bookmark.url, data.t, data.d));
     });
   }); 
 
@@ -37,13 +37,15 @@ var tileTitleText = function(id,x,y,width,height,color,linkPage,title,text){
     "data-id": id, 
     "data-color": color, 
     "data-width": width, 
-    "data-height": height}).addClass("tile");
+    "data-height": height,
+    "data-top": y,
+    "data-left": x}).addClass("tile");
   if (!!optClass) {
     tileContent.addClass(optClass());
   }
   tileContent.css({
-    'marginTop': y * (scale + tileSpace) + "px",
-    'marginLeft': x * (scale + tileSpace) + "px",
+    'top': y + "px",
+    'left': x + "px",
     'width': ((scale + tileSpace) * width - tileSpace) + "px",
     'height': ((scale + tileSpace) * height - tileSpace) + "px",
     'display': 'inline'
