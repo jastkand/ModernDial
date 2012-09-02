@@ -75,6 +75,9 @@
               }
               return JSON.stringify(title);
             }
+            
+            var url = $('#site_url').val();
+                url = (url.indexOf('://') == -1) ? 'http://' + url : url;
 
             if (bookmarksFolderId == null){
               initiateFolder();
@@ -83,8 +86,10 @@
             chrome.bookmarks.create({
               'parentId': bookmarksFolderId,
               'title': bookmarkTitle(),
-              'url': $('#site_url').val()
-            }, function(e){});
+              'url': url
+            }, function(e){
+              console.log(JSON.stringify(e));
+            });
 
             showHome();
             e.preventDefault();

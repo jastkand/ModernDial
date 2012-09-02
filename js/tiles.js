@@ -9,6 +9,7 @@ var tiles = function(content){
     .append(tileTitleText(0,2,1,1,'greenTile','http://github.com','Github',''));
 
   chrome.bookmarks.getChildren(bookmarksFolderId, function(bookmarks){
+    var tilesMap = [[0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]];
     $.each(bookmarks, function(key, bookmark){
       var data = JSON.parse(bookmark.title);
       var color = function(color){
@@ -19,7 +20,7 @@ var tiles = function(content){
           case '3': return 'redTile'; break;
         }
       }
-      content.append(tileTitleText(key + 1, key, data.w, data.h, color(data.c), bookmark.url, data.t, data.d));
+      content.append(tileTitleText(key, key, data.w, data.h, color(data.c), bookmark.url, data.t, data.d));
     });
   }); 
 
