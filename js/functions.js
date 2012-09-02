@@ -1,14 +1,6 @@
 scrolling = false; // did we just scroll?
 currentPage = ''; // just init
 
-/*Check for IE8, as the fadeout animations don't work with IE */
-var Browser = {Version: function() { var version = 999; if (navigator.appVersion.indexOf("MSIE") != -1)version = parseFloat(navigator.appVersion.split("MSIE")[1]);return version;}}
-if(Browser.Version() ==8){hideSpeed = 0;}
-
-/*Replace spaces by hyphens. ( - ) */
-String.prototype.stripSpaces = function(){ return this.replace(/\s/g,"_")}
-/*Replace hyphens by spaces */
-String.prototype.addSpaces = function(){ return this.replace(/_/g," ")}
 /*Case insensitive array search and returns the place of that search in the array */
 inArray = function(array,index){var i=array.length;while (i--){if(array[i].toLowerCase()==index.toLowerCase()){return i;}}return -1;}
 /* Returns the case sensitive index after a case insensitive search */

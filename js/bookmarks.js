@@ -1,10 +1,12 @@
-var bookmarkTitle = function(){
+var bookmarkTitle = function(title, description, width, height, color, top, left){
   var title = {
-    "t": $('#site_title').val(),
-    "d": $('#site_description').val(),
-    "w": $('select#tile_width option:selected').val(),
-    "h": $('select#tile_height option:selected').val(),
-    "c": $('select#tile_color option:selected').val()
+    "t": title,
+    "d": description,
+    "w": width,
+    "h": height,
+    "c": color,
+    "top": top,
+    "left": left
   }
   return JSON.stringify(title);
 }

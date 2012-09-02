@@ -15,6 +15,7 @@
             $(this).addClass('noclick');
           },
           stop: function(event, ui) {
+            $(this).data('id').toString();
             $(this).top();
             $(this).left();
 
@@ -91,7 +92,13 @@
 
               chrome.bookmarks.create({
                 'parentId': bookmarksFolderId,
-                'title': bookmarkTitle(),
+                'title': bookmarkTitle(
+                  $('#site_title').val(),
+                  $('#site_description').val(),
+                  $('select#tile_width option:selected').val(),
+                  $('select#tile_height option:selected').val(),
+                  $('select#tile_color option:selected').val(),
+                  0, 0),
                 'url': bookmarkUrl()
               }, function(e){
                 console.log(JSON.stringify(e));
@@ -101,7 +108,13 @@
               // Update existing bookmark
               chrome.bookmarks.update(modifiedBookmarkId, {
                 'url': bookmarkUrl(),
-                'title': bookmarkTitle()
+                'title': bookmarkTitle(
+                  $('#site_title').val(),
+                  $('#site_description').val(),
+                  $('select#tile_width option:selected').val(),
+                  $('select#tile_height option:selected').val(),
+                  $('select#tile_color option:selected').val(),
+                  0, 0)
               }, function(e){
                 modifiedBookmarkId = null;
               });
