@@ -3,24 +3,16 @@ var tiles = function(content){
     initiateFolder();
   }
 
-  content.html('')
-    .append(tileTitleText(0,0,2,1,'blueTile','http://vk.com','VK','Social network'))
-    .append(tileTitleText(0,1,2,1,'redTile','https://plus.google.com','Google+','G+ Social network'))
-    .append(tileTitleText(0,2,1,1,'greenTile','http://github.com','Github',''));
+  content.html('');
+  //   .append(tileTitleText(0,0,2,1,'blueTile','http://vk.com','VK','Social network'))
+  //   .append(tileTitleText(0,1,2,1,'redTile','https://plus.google.com','Google+','G+ Social network'))
+  //   .append(tileTitleText(0,2,1,1,'greenTile','http://github.com','Github',''));
 
   chrome.bookmarks.getChildren(bookmarksFolderId, function(bookmarks){
     var tilesMap = [[0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]];
     $.each(bookmarks, function(key, bookmark){
       var data = JSON.parse(bookmark.title);
-      var color = function(color){
-        switch(color){
-          case '0': return 'orangeTile'; break;
-          case '1': return 'blueTile'; break;
-          case '2': return 'greenTile'; break;
-          case '3': return 'redTile'; break;
-        }
-      }
-      content.append(tileTitleText(key, key, data.w, data.h, color(data.c), bookmark.url, data.t, data.d));
+      content.append(tileTitleText(bookmark.id, key, key, data.w, data.h, data.c, bookmark.url, data.t, data.d));
     });
   }); 
 
@@ -30,11 +22,24 @@ var tiles = function(content){
 /*Tile Templates */
 
 /* Tile with only a title and description */
-var tileTitleText = function(x,y,width,height,optClass,linkPage,title,text){
+var tileTitleText = function(id,x,y,width,height,color,linkPage,title,text){
+  var optClass = function(){
+    switch(color){
+      case '0': return 'orangeTile'; break;
+      case '1': return 'blueTile'; break;
+      case '2': return 'greenTile'; break;
+      case '3': return 'redTile'; break;
+    }
+  }
   var tileContent = $("<a />");
-  tileContent.attr("href", linkPage).addClass("tile");
+  tileContent.attr({
+    "href": linkPage, 
+    "data-id": id, 
+    "data-color": color, 
+    "data-width": width, 
+    "data-height": height}).addClass("tile");
   if (!!optClass) {
-    tileContent.addClass(optClass);
+    tileContent.addClass(optClass());
   }
   tileContent.css({
     'marginTop': y * (scale + tileSpace) + "px",

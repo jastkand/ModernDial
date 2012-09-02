@@ -1,6 +1,6 @@
 (function($) { 
   /*Show the homepage with tiles */
-  showHome = function(){
+  showHome = function(callback){
     $("html").css("overflow-x","auto");
     $content = $("#content");
     $content.css('margin-left',0).css("margin-top",30).width($("#wrapper").width()).html("<img src='images/loader.gif' height='24' width='24'/>").fadeIn(1000);
@@ -18,6 +18,23 @@
             setTimeout(function(){$(this).removeClass('noclick');}, 500);
           }
         });
+        $('.tileEdit').click(function(e){
+          var element = $(this).parent();
+          showForm(function(){
+            modifiedBookmarkId = element.data("id").toString();
+
+            $('#site_url').val(element.attr("href"));
+            $('#site_title').val(element.find('.title').html());
+            $('#site_description').val(element.find('.description').html());
+            $('#tile_color').val(element.data("color"));
+            $('#tile_width').val(element.data("width"));
+            $('#tile_height').val(element.data("height"));
+          });
+          e.preventDefault();
+        });
+        if (typeof callback == "function" && callback()) {
+          callback();
+        }
       });
     });
   };
@@ -50,7 +67,7 @@
     return bookmarksFolderId;
   };
 
-  showForm = function(){
+  showForm = function(callback){
     $("html").css("overflow-x","auto");
     $content = $("#content");
     $content.css('margin-left',0).css("margin-top",30).width($("#wrapper").width()).html("<img src='images/loader.gif' height='24' width='24'/>").fadeIn(1000);
@@ -79,17 +96,29 @@
             var url = $('#site_url').val();
                 url = (url.indexOf('://') == -1) ? 'http://' + url : url;
 
-            if (bookmarksFolderId == null){
-              initiateFolder();
-            }
+            if (modifiedBookmarkId == null){
+              // Create new bookmark
+              if (bookmarksFolderId == null){
+                initiateFolder();
+              }
 
-            chrome.bookmarks.create({
-              'parentId': bookmarksFolderId,
-              'title': bookmarkTitle(),
-              'url': url
-            }, function(e){
-              console.log(JSON.stringify(e));
-            });
+              chrome.bookmarks.create({
+                'parentId': bookmarksFolderId,
+                'title': bookmarkTitle(),
+                'url': url
+              }, function(e){
+                console.log(JSON.stringify(e));
+              });  
+            }
+            else {
+              // Update existing bookmark
+              chrome.bookmarks.update(modifiedBookmarkId, {
+                'url': url,
+                'title': bookmarkTitle()
+              }, function(e){
+                modifiedBookmarkId = null;
+              });
+            }
 
             showHome();
             e.preventDefault();
@@ -98,6 +127,9 @@
             showHome();
             e.preventDefault(); 
           });
+          if (typeof callback == "function" && callback()) {
+            callback();
+          }
         });
       });
     });
