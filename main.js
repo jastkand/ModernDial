@@ -1,7 +1,23 @@
 (function($) { 
   "use strict";
   /*Show the homepage with tiles */
+  var backgroundColor = function(){
+    var color = localStorage["background_color"];
+    if (!color) {
+      return;
+    }
+    $('body').css("background", color);
+
+    var buttonColor = Color($('#addTile').css("color"));
+    var backgroundColor = Color(color);
+    
+    if (backgroundColor.contrast(buttonColor) < 5) {
+      $('#addTile').css("color", buttonColor.hexString());
+    }
+  };
+
   var showHome = function(callback){
+    backgroundColor();
     $("html").css("overflow-x","auto");
     var $content = $("#content");
     $content.css('margin-left',0).css("margin-top",30).width($("#wrapper").width()).html("<img src='images/loader.gif' height='24' width='24'/>").fadeIn(1000);
@@ -93,6 +109,7 @@
   };
 
   var showForm = function(callback){
+    backgroundColor();
     $("html").css("overflow-x","auto");
     var $content = $("#content");
     $content.css('margin-left',0).css("margin-top",30).width($("#wrapper").width()).html("<img src='images/loader.gif' height='24' width='24'/>").fadeIn(1000);
