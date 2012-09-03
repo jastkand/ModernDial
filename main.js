@@ -1,8 +1,9 @@
 (function($) { 
+  "use strict";
   /*Show the homepage with tiles */
-  showHome = function(callback){
+  var showHome = function(callback){
     $("html").css("overflow-x","auto");
-    $content = $("#content");
+    var $content = $("#content");
     $content.css('margin-left',0).css("margin-top",30).width($("#wrapper").width()).html("<img src='images/loader.gif' height='24' width='24'/>").fadeIn(1000);
     
     $content.stop().fadeOut(500,function(){
@@ -54,28 +55,30 @@
           });
           e.preventDefault();
         });
-        if (typeof callback == "function" && callback()) {
+        if (typeof callback === "function" && callback()) {
           callback();
         }
       });
     });
   };
 
-  initiateFolder = function(){
+  var initiateFolder = function(){
     function listBookmarks(bookmarks) {
       bookmarks.forEach(function(bookmark) {
         if (bookmark.title === "ModernDial Bookmarks") {
           bookmarksFolderId = bookmark.id;
-        };
-        if (bookmark.children) listBookmarks(bookmark.children);
+        }
+        if (bookmark.children) {
+          listBookmarks(bookmark.children);
+        }
       });
-    };
+    }
 
-    if (bookmarksFolderId == null) {
+    if (bookmarksFolderId === null) {
       chrome.bookmarks.getTree(function(bookmarks){
         listBookmarks(bookmarks);
  
-        if (bookmarksFolderId == null) {
+        if (bookmarksFolderId === null) {
           chrome.bookmarks.create({
             'parentId': '1',
             'title': 'ModernDial Bookmarks'
@@ -89,22 +92,22 @@
     return bookmarksFolderId;
   };
 
-  showForm = function(callback){
+  var showForm = function(callback){
     $("html").css("overflow-x","auto");
-    $content = $("#content");
+    var $content = $("#content");
     $content.css('margin-left',0).css("margin-top",30).width($("#wrapper").width()).html("<img src='images/loader.gif' height='24' width='24'/>").fadeIn(1000);
     
     $.get(chrome.extension.getURL('form.html'), function(newContent, textStatus){
-      if(textStatus == 'error'){ // if error
+      if(textStatus === 'error'){ // if error
         $content.html("<h2 style='margin-top:0px;'>We're sorry :(</h2>the page you're looking for is not found."); // show with nice animation :)
       }
       $content.stop().fadeOut(500,function(){
         $content.html(newContent);
         $content.show(100, function(){
           $('#navSave').click(function(e) {
-            if (modifiedBookmarkId == null){
+            if (modifiedBookmarkId === null){
               // Create new bookmark
-              if (bookmarksFolderId == null){
+              if (bookmarksFolderId === null){
                 initiateFolder();
               }
 
@@ -119,7 +122,7 @@
                   0, 0),
                 'url': bookmarkUrl($('#site_url').val())
               }, function(e){
-                console.log(JSON.stringify(e));
+                log(JSON.stringify(e));
               });  
             }
             else {
@@ -146,7 +149,7 @@
             showHome();
             e.preventDefault(); 
           });
-          if (typeof callback == "function" && callback()) {
+          if (typeof callback === "function" && callback()) {
             callback();
           }
         });
