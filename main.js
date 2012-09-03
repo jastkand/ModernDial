@@ -11,7 +11,9 @@
     var buttonColor = Color($('#addTile').css("color"));
     var backgroundColor = Color(color);
     
-    if (backgroundColor.contrast(buttonColor) < 5) {
+    var contrast = backgroundColor.contrast(buttonColor);
+    log(contrast);
+    if (contrast < 3) {
       $('#addTile').css("color", buttonColor.hexString());
     }
   };

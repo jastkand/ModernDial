@@ -17,6 +17,7 @@
     "newtab": "main.html"
   },
   "permissions": [
-    "bookmarks"
+    "bookmarks",
+    "tabs"
   ]
 }

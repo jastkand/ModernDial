@@ -17,9 +17,10 @@
   $(function(){
     restore_options();
     $('#picker').miniColors();
-    $('#save-options').click(function(e){
+    $('#save').click(function(e){
       save_options();
+      window.close();
       e.preventDefault();
-    })
+    });
   });
 })(jQuery);
