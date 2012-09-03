@@ -20,7 +20,16 @@ var tiles = function(content){
       }
       log(tilesMap);
       
-      content.append(tileTitleText(bookmark.id, data.left, data.top, data.w, data.h, data.c, bookmark.url, data.t, data.d));
+      content.append(tileTitleText({
+        'id': bookmark.id, 
+        'left': data.left, 
+        'top': data.top,
+        'width': data.w, 
+        'height': data.h, 
+        'color': data.c, 
+        'url': bookmark.url, 
+        'title': data.t,
+        'desc': data.d}));
     });
   }); 
 
@@ -30,9 +39,18 @@ var tiles = function(content){
 /*Tile Templates */
 
 /* Tile with only a title and description */
-var tileTitleText = function(id,x,y,width,height,color,linkPage,title,text){
+var tileTitleText = function(params){
+  'id'
+'left'
+'top'
+'width'
+'height'
+'color'
+'url'
+'title'
+'desc'
   var optClass = function(){
-    switch(color){
+    switch(params.color){
       case '0': return 'orangeTile'; break;
       case '1': return 'blueTile'; break;
       case '2': return 'greenTile'; break;
@@ -44,26 +62,26 @@ var tileTitleText = function(id,x,y,width,height,color,linkPage,title,text){
   }
   var tileContent = $("<a />");
   tileContent.attr({
-    "href": linkPage, 
-    "data-id": id, 
-    "data-color": color, 
-    "data-width": width, 
-    "data-height": height,
-    "data-top": y,
-    "data-left": x}).addClass("tile");
-  if (!!optClass) {
-    tileContent.addClass(optClass());
-  }
+    "href": params.url, 
+    "data-id": params.id, 
+    "data-color": params.color, 
+    "data-width": params.width, 
+    "data-height": params.height,
+    "data-top": params.top,
+    "data-left": params.left}).addClass("tile");
+  
+  tileContent.addClass(optClass());
+
   tileContent.css({
-    'top': y + "px",
-    'left': x + "px",
-    'width': ((scale + tileSpace) * width - tileSpace) + "px",
-    'height': ((scale + tileSpace) * height - tileSpace) + "px",
+    'top': params.top + "px",
+    'left': params.left + "px",
+    'width': ((scale + tileSpace) * params.width - tileSpace) + "px",
+    'height': ((scale + tileSpace) * params.height - tileSpace) + "px",
     'display': 'inline'
 	});
   tileContent
-    .append("<div class='title'>" + title + "</div>")
-    .append("<div class='desc'>" + text + "</div>")
+    .append("<div class='title'>" + params.title + "</div>")
+    .append("<div class='desc'>" + params.desc + "</div>")
     .append("<button class='tileEdit'><img src='../images/edit.png' width='16' /></button>");
   return tileContent;
 }
