@@ -39,6 +39,7 @@ var tileTitleText = function(id,x,y,width,height,color,linkPage,title,text){
       case '3': return 'redTile'; break;
       case '4': return 'darkBlueTile'; break;
       case '5': return 'lightBlueTile'; break;
+      case '6': return 'yellowTile'; break;
     }
   }
   var tileContent = $("<a />");
@@ -63,7 +64,7 @@ var tileTitleText = function(id,x,y,width,height,color,linkPage,title,text){
   tileContent
     .append("<div class='title'>" + title + "</div>")
     .append("<div class='desc'>" + text + "</div>")
-    .append("<button class='tileEdit'>E</button>");
+    .append("<button class='tileEdit'><img src='../images/edit.png' width='16' /></button>");
   return tileContent;
 }
 
