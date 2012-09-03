@@ -3,7 +3,7 @@ currentPage = ''; // just init
 
 function log(string){
 	if (debug) {
-		console.log(string);
+		console.log("Log: " + string);
 	}
 }
 
