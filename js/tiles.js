@@ -1,5 +1,5 @@
 var tiles = function(content){
-  if (bookmarksFolderId == null) {
+  if (bookmarksFolderId === null) {
     initiateFolder();
   }
 
@@ -20,46 +20,36 @@ var tiles = function(content){
       }
       log(tilesMap);
       
-      content.append(tileTitleText({
+      content.append(tile({
         'id': bookmark.id, 
         'left': data.left, 
         'top': data.top,
         'width': data.w, 
         'height': data.h, 
         'color': data.c, 
-        'url': bookmark.url, 
+        'url': bookmark.url,
+        'icon': data.icon,
         'title': data.t,
         'desc': data.d}));
     });
   }); 
 
   return content;
-}
+};
 
 /*Tile Templates */
-
-/* Tile with only a title and description */
-var tileTitleText = function(params){
-  'id'
-'left'
-'top'
-'width'
-'height'
-'color'
-'url'
-'title'
-'desc'
+var tile = function(params){
   var optClass = function(){
     switch(params.color){
-      case '0': return 'orangeTile'; break;
-      case '1': return 'blueTile'; break;
-      case '2': return 'greenTile'; break;
-      case '3': return 'redTile'; break;
-      case '4': return 'darkBlueTile'; break;
-      case '5': return 'lightBlueTile'; break;
-      case '6': return 'yellowTile'; break;
+      case '0': return 'orangeTile';
+      case '1': return 'blueTile';
+      case '2': return 'greenTile';
+      case '3': return 'redTile';
+      case '4': return 'darkBlueTile';
+      case '5': return 'lightBlueTile';
+      case '6': return 'yellowTile';
     }
-  }
+  };
   var tileContent = $("<a />");
   tileContent.attr({
     "href": params.url, 
@@ -79,23 +69,27 @@ var tileTitleText = function(params){
     'height': ((scale + tileSpace) * params.height - tileSpace) + "px",
     'display': 'inline'
 	});
-  tileContent
-    .append("<div class='title'>" + params.title + "</div>")
-    .append("<div class='desc'>" + params.desc + "</div>")
-    .append("<button class='tileEdit'><img src='../images/edit.png' width='16' /></button>");
+  if (!!params.icon) {
+    tileContent.append(tileImage(params.icon, params.width, params.height));
+  }
+  else{
+    tileContent.append(tileTitleText(params.title, params.desc));
+  }
+  
+  tileContent.append("<button class='tileEdit'><img src='../images/edit.png' width='16' /></button>");
   return tileContent;
+};
+
+/* Tile with only a title and description */
+var tileTitleText = function(title, text) {
+  return "<div class='title'>" + title + "</div><div class='desc'>" + text + "</div>";
+};
+
+/* Tile with only an image */
+var tileImage = function(image, width, height){ 
+	return "<img src='" + image + "' height='" + ((scale + tileSpace) * height - tileSpace) + "' />";
 }
 
-tileImage = function(group,x,y,bg,linkPage,img,imgSize,optClass){ /* Tile with only an image */
-	tileContent += (
-	"<a "+makeLink(linkPage)+" class='tile group"+group+" "+optClass+"' style=' \
-	margin-top:"+y*scaleSpace+"px;margin-left:"+(x*scaleSpace+group*tileGroupSpace)+"px; \
-	width: "+scale+"px; height:"+scale+"px; \
-	background:"+bg+";'>\
-	<img src='"+img+"' height="+imgSize+" width="+imgSize+" \
-	style='margin-left: "+(scale-imgSize)*0.5+"px; margin-top: "+(scale-imgSize)*0.5+"px'/>\
-	</a>");
-}
 tileImageAdvanced = function(group,x,y,width,height,bg,linkPage,img,imgSizeWidth,imgSizeHeight,optClass){
 	drawHeight = (imgSizeWidth*scaleSpace-tileSpace)
 	drawWidth = (imgSizeHeight*scaleSpace-tileSpace)
