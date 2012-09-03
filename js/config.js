@@ -1,3 +1,5 @@
+debug = true;
+
 scale = 135; //Size of tiles 
 tileSpace = 10; //Space between tiles
 

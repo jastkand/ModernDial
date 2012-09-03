@@ -1,6 +1,12 @@
 scrolling = false; // did we just scroll?
 currentPage = ''; // just init
 
+function log(string){
+	if (debug) {
+		console.log(string);
+	}
+}
+
 /*Case insensitive array search and returns the place of that search in the array */
 inArray = function(array,index){var i=array.length;while (i--){if(array[i].toLowerCase()==index.toLowerCase()){return i;}}return -1;}
 /* Returns the case sensitive index after a case insensitive search */

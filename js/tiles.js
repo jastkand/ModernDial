@@ -15,10 +15,10 @@ var tiles = function(content){
       for (var i = 0; i < data.w; i++){
         for (var j = 0; j < data.h; j++) {
           tilesMap[top + j][left + i] = 1;
-          console.log("title: " + data.t + ";top: " + top + "; left: " + left + "; i: " + i + "; j: " + j);
+          log("title: " + data.t + ";top: " + top + "; left: " + left + "; i: " + i + "; j: " + j);
         }
       }
-      console.log(tilesMap);
+      log(tilesMap);
       
       content.append(tileTitleText(bookmark.id, data.left, data.top, data.w, data.h, data.c, bookmark.url, data.t, data.d));
     });
