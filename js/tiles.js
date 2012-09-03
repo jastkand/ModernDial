@@ -9,6 +9,17 @@ var tiles = function(content){
     var tilesMap = [[0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]];
     $.each(bookmarks, function(key, bookmark){
       var data = JSON.parse(bookmark.title);
+
+      var left = data.left / (scale + tileSpace);
+      var top = data.top / (scale  + tileSpace);
+      for (var i = 0; i < data.w; i++){
+        for (var j = 0; j < data.h; j++) {
+          tilesMap[top + j][left + i] = 1;
+          console.log("title: " + data.t + ";top: " + top + "; left: " + left + "; i: " + i + "; j: " + j);
+        }
+      }
+      console.log(tilesMap);
+      
       content.append(tileTitleText(bookmark.id, data.left, data.top, data.w, data.h, data.c, bookmark.url, data.t, data.d));
     });
   }); 
