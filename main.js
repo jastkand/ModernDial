@@ -1,25 +1,24 @@
 (function($) { 
   "use strict";
   /*Show the homepage with tiles */
-  var backgroundColor = function(){
+  var fixFontColor = function(selector){
     var color = localStorage["background_color"];
     if (!color) {
       return;
     }
     $('body').css("background", color);
 
-    var buttonColor = Color($('#addTile').css("color"));
+    var buttonColor = Color("#fff");
     var backgroundColor = Color(color);
     
     var contrast = backgroundColor.contrast(buttonColor);
-    log(contrast);
     if (contrast < 3) {
-      $('#addTile').css("color", buttonColor.hexString());
+      $(selector).css("color", buttonColor.hexString());
     }
   };
 
   var showHome = function(callback){
-    backgroundColor();
+    fixFontColor('#addTile');
     $("html").css("overflow-x","auto");
     var $content = $("#content");
     $content.css('margin-left',0).css("margin-top",30).width($("#wrapper").width()).html("<img src='images/loader.gif' height='24' width='24'/>").fadeIn(1000);
@@ -111,7 +110,6 @@
   };
 
   var showForm = function(callback){
-    backgroundColor();
     $("html").css("overflow-x","auto");
     var $content = $("#content");
     $content.css('margin-left',0).css("margin-top",30).width($("#wrapper").width()).html("<img src='images/loader.gif' height='24' width='24'/>").fadeIn(1000);
@@ -123,6 +121,7 @@
       $content.stop().fadeOut(500,function(){
         $content.html(newContent);
         $content.show(100, function(){
+          fixFontColor('.fixColor');
           $('#navSave').click(function(e) {
             if (modifiedBookmarkId === null){
               // Create new bookmark
@@ -140,9 +139,7 @@
                   $('select#tile_color option:selected').val(),
                   0, 0),
                 'url': bookmarkUrl($('#site_url').val())
-              }, function(e){
-                log(JSON.stringify(e));
-              });  
+              }, function(e){});  
             }
             else {
               // Update existing bookmark
