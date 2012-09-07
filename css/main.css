@@ -2,6 +2,14 @@ body {
   background: #096440;
 }
 
+.column {
+  display: inline-block;
+  margin-right: 100px;
+  vertical-align: top;
+  width: 350px;
+}
+
+
 html {
 	margin:0;
 	padding:0;
