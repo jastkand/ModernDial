@@ -3,11 +3,15 @@ ModernDial
 
 Google Chrome extension adding dial page into the browser styled like Modern UI
 
-Todo
-----
-- Implement removing of the existing dial
+Todo list
+---------
+- Implement removing of the existing dials
 - Add ability to use image instead of the title and description
 - Auto repositon of dials on drag to void order of dials on the same place
+- Move title option into aaditional options. Parse title from page title.
+- Make customizing colors of dials by colorpicker like background (pre-installed colors should exist)
+- Implement right click adding of dials
+- Implement slider for pages of dials
 
 License
 -------
